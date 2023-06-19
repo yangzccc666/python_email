@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+        <link rel="stylesheet" href="../resource/css/styles.css">
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>收件人</th>
+            <th>标题</th>
+            <th>内容</th>
+            <th>发送时间</th>
+        </tr>
+        </thead>
+
+        {% for content in result %}
+         <tr>
+            <td align="center" style="width: 100px">{{loop.index}}</td>
+            <td align="center" style="width: 150px">{{content.to}}</td>
+            <td style="width: 150px">{{content.title}}</td>
+            <td style="width: 200px">{{content.text| striptags | truncate(10)}}...</td>
+            <td align="center" style="width: 150px">{{content.sendTime}}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    <script>
+        function del(id) {
+            if (confirm("确定要删除该邮件吗？")){
+                location.href ='/del?id='+id;
+            }
+        }
+
+        function show(id) {
+            location.href ='/detail?id='+id;
+        }
+    </script>
+
+
+</body>
+</html>

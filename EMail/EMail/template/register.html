@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.2.1/jquery.min.js"></script>
+<script>
+        $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}})
+    </script>
+<script>
+    function repeat() {
+        $.post({
+            url:"/repeatAccount",
+            data:{"account":$("#account").val()},
+            success:function (data) {
+                console.log(data);
+                if(data == '1'){
+                    $('#sumit_btn').attr('disabled',true)
+                    $('#sumit_btn').css('background-color','#e0e0e0')
+                    $('#reg_msg').css("color","red");
+                    $('#reg_msg').css("font-size","24");
+                    $('#reg_msg').html("此邮箱已存在！&nbsp;&nbsp;&nbsp;<svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-emoji-angry\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z\"/>\n" +
+                        "  <path d=\"M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 1 1-.447.894l-2-1a.5.5 0 0 1-.223-.67zm7.894 0a.5.5 0 0 0-.67-.223l-2 1a.5.5 0 1 0 .447.894l2-1a.5.5 0 0 0 .223-.67z\"/>\n" +
+                        "</svg>&nbsp;&nbsp;&nbsp;<svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-emoji-angry\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z\"/>\n" +
+                        "  <path d=\"M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 1 1-.447.894l-2-1a.5.5 0 0 1-.223-.67zm7.894 0a.5.5 0 0 0-.67-.223l-2 1a.5.5 0 1 0 .447.894l2-1a.5.5 0 0 0 .223-.67z\"/>\n" +
+                        "</svg>&nbsp;&nbsp;&nbsp;<svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-emoji-angry\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z\"/>\n" +
+                        "  <path d=\"M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 1 1-.447.894l-2-1a.5.5 0 0 1-.223-.67zm7.894 0a.5.5 0 0 0-.67-.223l-2 1a.5.5 0 1 0 .447.894l2-1a.5.5 0 0 0 .223-.67z\"/>\n" +
+                        "</svg>");
+                }else {
+                        $('#sumit_btn').attr('disabled',false)
+                    $('#sumit_btn').css('background-color','limegreen')
+                    $('#reg_msg').css("color","green");
+                    $('#reg_msg').css("font-size","24");
+                    $('#reg_msg').html("该邮箱可注册。&nbsp;&nbsp;&nbsp; <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-emoji-smile\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z\"/>\n" +
+                        "  <path fill-rule=\"evenodd\" d=\"M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z\"/>\n" +
+                        "  <path d=\"M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z\"/>\n" +
+                        "</svg>");
+                }
+            }
+        })
+    }
+</script>
+<body style="background-color: whitesmoke">
+<div align="center" style="margin-top:10px;font-size: 36px">
+    注册界面
+</div>
+        <form action="/doRegister/" method="post">
+                <div style="padding: 10px 500px 5px 500px">
+                    <label >邮箱：</label>
+                    <input type="text" name="account"  id="account" class="form-control" placeholder="请填写您的常用邮箱 格式：xxx@xxx.xxx" required="required" onblur="repeat()">
+                     <span id="reg_msg"></span>
+                </div>
+                <div style="padding: 10px 500px 5px 500px">
+                    <label >密码：</label>
+                    <input type="password" name="password"  id="password" class="form-control" placeholder="必填" required="required">
+                </div>
+
+            </form>
+            <div style="padding: 30px 150px 5px 920px">
+                <button  class="btn btn-success" id="sumit_btn" onclick="doRegister()">提交</button>
+            </div>
+
+    </div>
+        <script>
+            function doRegister() {
+                var account =$("#account").val();
+                var password =$("#password").val();
+                if (account == null || account == '' || password == null || password == ''){
+                    alert("请将信息补充完整后提交！");
+                    return false;
+                }
+                $.post({
+                        url:"/register",
+                        data:{
+                            "account":$("#account").val(),
+                            "password":$("#password").val(),
+                    },
+                        success:function (data) {
+                            if(data == 'reg-pass'){
+                                alert("注册成功，即将为你跳转到登录界面");
+                                location.href ='/';
+                            }else if (data == 'account invalid'){
+                                alert("邮箱格式必须为xxx@xxx.xxx 例：123@qq.com");
+                                return false;
+                            }
+                        }
+                    },
+                )
+        }
+        </script>
+</body>
+</html>

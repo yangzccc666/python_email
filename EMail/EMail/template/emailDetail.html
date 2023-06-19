@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../resource/css/styles.css">
+    <style>
+        .head {
+            margin-top: 10px;
+            font-size: 18px;
+            background-color: white;
+        }
+        .head span {
+            font-size: 26px;
+            font-family: Tahoma;
+            color: brown;
+        }
+
+        .emailBody{
+            border: 1px solid black;
+            background-color: honeydew;
+            margin-top: 10px;
+            box-shadow: black 1px 1px 1px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+
+</head>
+<body style="background-color: #f0f0f0">
+   <div class="head" align="center">
+       发件人：<span style="padding-right: 100px">{{email.source}}</span>
+       时间：<span >{{email.sendTime}}</span>
+       <br>
+       <br>
+       标题：<span style="font-family: 'Microsoft YaHei UI'">{{email.title}}</span>
+       <br>
+
+
+   </div>
+
+    <div class="emailBody">
+        <p style="text-indent: 34px;padding-top: 10px;padding-left: 10px;padding-right: 10px">
+           {{email.text}}
+        </p>
+
+    </div>
+
+
+    <div id="font" align="right" style="padding-right: 10px">
+        <button  class="btn btn-success" id="sumit_btn" onclick="doReply('{{email.source}}','{{email.title}}')">回复</button>
+    </div>
+ <script>
+            function doReply(to,title) {
+               location.href ='/toReply?to='+to+"&title="+title;
+        }
+        </script>
+</body>
+</html>
